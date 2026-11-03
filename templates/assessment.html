@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CareerAI | Profile Assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="assessment-page">
+
+<header class="assessment-nav">
+    <h2>Career<span>AI.</span></h2>
+    <a href="/">← Back to Home</a>
+</header>
+
+<main class="assessment-layout">
+
+    <aside class="assessment-sidebar">
+        <p class="side-label">YOUR JOURNEY</p>
+        <h2>Let's discover where your skills can take you.</h2>
+
+        <div class="journey-step active">
+            <span>01</span>
+            <div>
+                <h4>Personal Profile</h4>
+                <p>Tell us about yourself</p>
+            </div>
+        </div>
+
+        <div class="journey-step">
+            <span>02</span>
+            <div>
+                <h4>Skills & Interests</h4>
+                <p>Share your strengths</p>
+            </div>
+        </div>
+
+        <div class="journey-step">
+            <span>03</span>
+            <div>
+                <h4>Career Discovery</h4>
+                <p>Explore your matches</p>
+            </div>
+        </div>
+
+        <div class="sidebar-note">
+            <strong>Why this assessment?</strong>
+            <p>Your responses help our recommendation engine compare your profile with different career paths.</p>
+        </div>
+    </aside>
+
+    <section class="assessment-content">
+
+        <div class="assessment-heading">
+            <span>CAREER PROFILE / 01</span>
+            <h1>Build your career profile</h1>
+            <p>Complete the details below to discover career opportunities aligned with your interests.</p>
+        </div>
+
+        <form action="/recommend" method="POST">
+
+            <div class="form-section">
+                <h3>01. Personal Information</h3>
+                <p>Let's start with your basic details.</p>
+
+                <div class="assessment-fields">
+                    <div class="field">
+                        <label>Full Name</label>
+                        <input type="text" name="name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Education</label>
+                        <input type="text" name="education" placeholder="e.g. B.Tech Computer Science" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>02. Skills & Interests</h3>
+                <p>Tell us what you know and what you enjoy.</p>
+
+                <div class="field">
+                    <label>Technical Skills</label>
+                    <input type="text" name="skills" placeholder="Python, Java, SQL, HTML..." required>
+                    <small>Separate multiple skills using commas.</small>
+                </div>
+
+                <div class="field">
+                    <label>Area of Interest</label>
+                    <select name="interest" required>
+                        <option value="">Select your interest</option>
+                        <option>Programming</option>
+                        <option>Artificial Intelligence</option>
+                        <option>Data Analysis</option>
+                        <option>Web Development</option>
+                        <option>Cyber Security</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>03. Career Preferences</h3>
+                <p>Choose the direction you would like to explore.</p>
+
+                <div class="field">
+                    <label>Preferred Career Domain</label>
+                    <select name="domain" required>
+                        <option value="">Select a career domain</option>
+                        <option>Software Development</option>
+                        <option>AI and Machine Learning</option>
+                        <option>Data Science</option>
+                        <option>Web Development</option>
+                        <option>Cyber Security</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Experience Level</label>
+                    <select name="experience" required>
+                        <option value="">Select your experience</option>
+                        <option>Fresher</option>
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Experienced</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="assessment-submit">
+                <p>Your information will be used to generate career recommendations.</p>
+                <button type="submit">Analyze My Career Profile →</button>
+            </div>
+
+        </form>
+    </section>
+
+</main>
+
+<footer class="assessment-footer">
+    CareerAI. | Your journey towards the right career starts here.
+</footer>
+
+</body>
+</html>

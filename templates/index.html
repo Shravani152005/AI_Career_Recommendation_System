@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CareerAI | Career Intelligence</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="landing-nav">
+    <h2>Career<span>AI.</span></h2>
+    <nav>
+        <a href="/">Home</a>
+        <a href="#features">Features</a>
+        <a href="{{ url_for('history') }}">History</a>
+        <a href="/assessment" class="nav-start">Get Started ↗</a>
+    </nav>
+</header>
+
+<section class="landing-hero">
+    <div class="hero-left">
+        <div class="hero-tag">✦ YOUR CAREER, REIMAGINED</div>
+
+        <h1>Find the career<br>
+        that fits <span>your potential.</span></h1>
+
+        <p>
+            Your skills have a direction. Discover career opportunities
+            that align with your strengths, interests and ambitions
+            through intelligent career recommendations.
+        </p>
+
+        <div class="hero-actions">
+            <a href="/assessment" class="primary-action">Explore My Career →</a>
+            <a href="#features" class="secondary-action">Discover More ↓</a>
+        </div>
+
+        <div class="hero-proof">
+            <div><strong>01</strong><span>Build your profile</span></div>
+            <div><strong>02</strong><span>Analyze your skills</span></div>
+            <div><strong>03</strong><span>Explore career paths</span></div>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <div class="visual-card">
+            <div class="visual-top">
+                <span>CAREER INSIGHTS</span>
+                <span>✦ AI</span>
+            </div>
+
+            <div class="visual-circle">
+                <div>
+                    <strong>AI</strong>
+                    <span>POWERED</span>
+                </div>
+            </div>
+
+            <h3>Your next opportunity starts here.</h3>
+            <p>Skills · Interests · Career Discovery</p>
+
+            <div class="visual-bottom">
+                <span>Career exploration</span>
+                <span>Personalized insights ↗</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="landing-features" id="features">
+    <div class="feature-heading">
+        <span>THE CAREERAI EXPERIENCE</span>
+        <h2>Clarity for every career decision.</h2>
+        <p>Turn your current skills into a clearer career direction.</p>
+    </div>
+
+    <div class="landing-grid">
+        <div class="landing-card">
+            <span>01 / DISCOVER</span>
+            <h3>Career Recommendations</h3>
+            <p>Explore suitable career paths based on your profile.</p>
+        </div>
+
+        <div class="landing-card">
+            <span>02 / ANALYZE</span>
+            <h3>Skill Gap Analysis</h3>
+            <p>Understand which technical skills you can develop further.</p>
+        </div>
+
+        <div class="landing-card">
+            <span>03 / PLAN</span>
+            <h3>Career Direction</h3>
+            <p>Use personalized insights to plan your next learning steps.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="landing-footer">
+    <h2>CareerAI.</h2>
+    <p>Discover your potential. Shape your future.</p>
+</footer>
+
+</body>
+</html>

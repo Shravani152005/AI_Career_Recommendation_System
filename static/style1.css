@@ -1,0 +1,82 @@
+/* Career Results Page */
+
+.results-container {
+    max-width: 950px;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+.result-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.result-heading h1 {
+    color: #30276f;
+    font-size: 38px;
+    margin: 15px;
+}
+
+.result-heading p {
+    color: #777;
+}
+
+.profile-info {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    line-height: 2;
+}
+
+.recommend-title {
+    color: #30276f;
+    margin-bottom: 20px;
+}
+
+.career-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(40, 30, 90, 0.07);
+}
+
+.career-card h2 {
+    color: #5141a5;
+    margin-bottom: 15px;
+}
+
+.career-card h4 {
+    color: #30276f;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+.match-score {
+    color: #16a36a;
+    font-weight: bold;
+}
+
+.progress {
+    background: #e8e5f5;
+    height: 10px;
+    border-radius: 10px;
+    margin-top: 12px;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #5141a5, #9874e8);
+    height: 10px;
+    border-radius: 10px;
+}
+
+.back-btn {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 14px 25px;
+    background: #5141a5;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CareerAI | Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="dashboard-sidebar">
+        <h2 class="dashboard-logo">Career<span>AI.</span></h2>
+
+        <p class="sidebar-heading">WORKSPACE</p>
+
+        <a href="#" class="dashboard-link active">▦ &nbsp; Dashboard</a>
+        <a href="#recommendations" class="dashboard-link">✧ &nbsp; Career Matches</a>
+        <a href="#skills" class="dashboard-link">◇ &nbsp; Skill Analysis</a>
+        <a href="/assessment" class="dashboard-link">＋ &nbsp; New Assessment</a>
+
+        <div class="sidebar-bottom">
+            <p>CAREERAI PLATFORM</p>
+            <span>Discover your potential.</span>
+            <a href="/">← Back to Home</a>
+        </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD -->
+    <main class="dashboard-main">
+
+        <header class="dashboard-topbar">
+            <div>
+                <p class="dashboard-date">YOUR PERSONAL CAREER SPACE</p>
+                <h2>Career Dashboard</h2>
+            </div>
+            <div class="profile-avatar">
+                {{ name[0]|upper }}
+            </div>
+        </header>
+
+        <section class="dashboard-welcome">
+            <div>
+                <p>YOUR CAREER JOURNEY</p>
+                <h1>Welcome back, {{ name }}!</h1>
+                <span>Your career insights are ready. Explore your recommended paths below.</span>
+            </div>
+            <a href="/assessment">Update Profile ↗</a>
+        </section>
+
+        <!-- SUMMARY CARDS -->
+        <section class="dashboard-stats">
+
+            <div class="stat-card">
+                <span>TOP CAREER MATCH</span>
+                <h2>{{ recommendations[0].score if recommendations else 0 }}%</h2>
+                <p>Highest similarity score</p>
+            </div>
+
+            <div class="stat-card">
+                <span>CAREER OPTIONS</span>
+                <h2>{{ recommendations|length }}</h2>
+                <p>Recommended career paths</p>
+            </div>
+
+            <div class="stat-card">
+                <span>SKILLS IN TOP MATCH</span>
+                <h2>{{ recommendations[0].matched|length if recommendations else 0 }}</h2>
+                <p>Matching technical skills</p>
+            </div>
+
+        </section>
+
+        <!-- PROFILE -->
+        <section class="dashboard-profile">
+            <div>
+                <p>STUDENT PROFILE</p>
+                <h3>{{ name }}</h3>
+            </div>
+            <div>
+                <p>EDUCATION</p>
+                <h3>{{ education }}</h3>
+            </div>
+            <div>
+                <p>EXPERIENCE</p>
+                <h3>{{ experience }}</h3>
+            </div>
+        </section>
+
+        <!-- CAREER RECOMMENDATIONS -->
+        <section class="dashboard-section" id="recommendations">
+
+            <div class="dashboard-section-title">
+                <div>
+                    <p>PERSONALIZED RESULTS</p>
+                    <h2>Your Career Matches</h2>
+                </div>
+                <span>TOP {{ recommendations|length }} RESULTS</span>
+            </div>
+
+            {% for career in recommendations %}
+
+            <div class="dashboard-career-card">
+
+                <div class="career-card-heading">
+                    <div class="career-icon">
+                        0{{ loop.index }}
+                    </div>
+
+                    <div class="career-card-name">
+                        <span>CAREER OPTION {{ loop.index }}</span>
+                        <h3>
+    <a class="career-detail-link"
+       href="{{ url_for('career_details', career_name=career.name) }}">
+        {{ career.name }} →
+    </a>
+</h3>
+                    </div>
+
+                    <div class="career-percentage">
+                        <strong>{{ career.score }}%</strong>
+                        <span>Match score</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-progress">
+                    <div class="dashboard-progress-fill"
+                         data-score="{{ career.score }}">
+                    </div>
+                </div>
+
+                <p class="career-description">{{ career.description }}</p>
+
+                <div class="career-skills" id="skills">
+
+                    <div>
+                        <h4>✓ Matching Skills</h4>
+                        <div class="dashboard-tags">
+                            {% for skill in career.matched %}
+                                <span class="good-tag">{{ skill }}</span>
+                            {% else %}
+                                <span class="no-tag">No matching skills</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4>＋ Skills to Develop</h4>
+                        <div class="dashboard-tags">
+                            {% for skill in career.missing %}
+                                <span class="develop-tag">{{ skill }}</span>
+                            {% else %}
+                                <span class="no-tag">No additional skills listed</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+        <!-- CAREER COMPARISON -->
+        <section class="dashboard-section">
+            <div class="dashboard-section-title">
+                <div>
+                    <p>VISUAL COMPARISON</p>
+                    <h2>Career Match Overview</h2>
+                </div>
+            </div>
+
+            <div class="match-chart">
+
+                {% for career in recommendations %}
+                <div class="chart-row">
+                    <div class="chart-label">
+                        <span>{{ career.name }}</span>
+                        <strong>{{ career.score }}%</strong>
+                    </div>
+
+                    <div class="chart-track">
+                        <div class="chart-bar"
+                             data-score="{{ career.score }}">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </section>
+
+        <div class="dashboard-disclaimer">
+            <strong>Understanding your results</strong>
+            <p>
+                Match scores represent text similarity between your submitted
+                profile and our available career descriptions. They are
+                recommendations for exploration, not probabilities of getting a job.
+            </p>
+        </div>
+
+        <footer class="dashboard-footer">
+            CareerAI. | Building clarity. Connecting skills with careers.
+        </footer>
+
+    </main>
+</div>
+
+<script>
+    document.querySelectorAll("[data-score]").forEach(function(bar) {
+        let score = Number(bar.getAttribute("data-score"));
+        bar.style.width = Math.min(100, Math.max(0, score)) + "%";
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CareerAI | Career Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<nav class="assessment-nav">
+    <h2>Career<span>AI.</span></h2>
+    <a href="/">Back to Home</a>
+</nav>
+
+<main class="results-container">
+
+    <p class="eyebrow">CAREER EXPLORER / CAREER DETAILS</p>
+
+    <h1>{{ career.name }}</h1>
+
+    <p class="welcome">
+        Explore this career path and understand the skills required
+        to prepare for it.
+    </p>
+
+    <section class="career-card">
+        <h2>Career Overview</h2>
+        <p>{{ career.description }}</p>
+    </section>
+
+    <section class="career-card">
+        <h2>Career Information</h2>
+        <p><strong>Area of Interest:</strong> {{ career.interest }}</p>
+        <p><strong>Career Domain:</strong> {{ career.domain }}</p>
+    </section>
+
+    <section class="career-card">
+        <h2>Important Technical Skills</h2>
+
+        <div class="skill-list">
+            {% for skill in career.skills %}
+                <span class="skill-tag matched">{{ skill }}</span>
+            {% endfor %}
+        </div>
+    </section>
+
+    <a href="/assessment" class="back-btn">Explore Other Careers →</a>
+
+</main>
+
+</body>
+</html>

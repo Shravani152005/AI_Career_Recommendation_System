@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerAI | Recommendation History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .history-page {
+            min-height: 100vh;
+            background: #f4f7fb;
+            padding: 40px 6%;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .history-header h1 {
+            color: #14243a;
+            margin-bottom: 8px;
+        }
+
+        .history-header p {
+            color: #68778a;
+        }
+
+        .history-back {
+            background: #14243a;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .history-table-container {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        .history-table th {
+            background: #f0f4f8;
+            color: #14243a;
+            text-align: left;
+            padding: 16px;
+        }
+
+        .history-table td {
+            padding: 16px;
+            border-bottom: 1px solid #edf0f4;
+            color: #526174;
+        }
+
+        .history-table tr:hover {
+            background: #f9fbfd;
+        }
+
+        .history-score {
+            color: #07866d;
+            font-weight: bold;
+        }
+
+        .empty-history {
+            text-align: center;
+            padding: 50px 20px;
+            color: #68778a;
+        }
+
+        @media(max-width: 600px) {
+            .history-page {
+                padding: 25px 4%;
+            }
+
+            .history-table-container {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="history-page">
+
+    <div class="history-header">
+        <div>
+            <h1>Recommendation History</h1>
+            <p>View previously submitted profiles and career recommendations.</p>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="history-back">
+            Back to Home
+        </a>
+    </div>
+
+    <div class="history-table-container">
+
+        {% if history_data %}
+
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Education</th>
+                    <th>Recommended Career</th>
+                    <th>Match Score</th>
+                    <th>Matched Skills</th>
+                    <th>Missing Skills</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in history_data %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.education }}</td>
+                    <td>{{ item.career_name or 'No recommendation' }}</td>
+                    <td class="history-score">
+                        {% if item.score is not none %}
+                            {{ item.score }}%
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>{{ item.matched_skills or '-' }}</td>
+                    <td>{{ item.missing_skills or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+
+        <div class="empty-history">
+            <h2>No History Available</h2>
+            <p>Submit your career assessment to see your recommendations here.</p>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
