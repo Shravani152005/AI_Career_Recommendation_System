@@ -47,7 +47,7 @@ The application uses Natural Language Processing (NLP) techniques and machine le
 
 ### 1. Clone the Repository
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_LINK
+git clone https://github.com/Shravani152005/AI_Career_Recommendation_System.git
 ```
 
 ### 2. Open the Project Folder
